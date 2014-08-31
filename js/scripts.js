@@ -2,8 +2,13 @@ var Tamagotchi = {
 	initialize: function(petName, petType) {
 		this.name = petName;
 		this.type = petType;
-		this.foodLevel = 10;
-		this.sleepLevel = 10;
-		this.activityLevel = 10;
+		this.foodLevel = 10.0;
+		this.sleepLevel = 10.00;
+		this.activityLevel = 10.0;
+	},
+	timePasses: function() {
+		this.foodLevel = this.foodLevel-1;
+		this.sleepLevel = this.sleepLevel - 0.75;
+		this.activityLevel = this.activityLevel - 0.5;
 	}
 }
