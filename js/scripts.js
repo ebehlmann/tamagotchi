@@ -19,3 +19,29 @@ var Tamagotchi = {
 		}
 	}
 }
+
+$(document).ready(function() {
+	$('form#new-pet').submit(function(event) {
+		event.preventDefault();
+		
+		var newPet = Object.create(Tamagotchi);
+		newPet.initialize(($('input#new-pet-name').val()), ($('#input#new-pet-type').val()));
+		
+		$('form#new-pet').hide();
+		$('div.pet-stats').show();
+		
+		$('span#name').text(newPet.name);
+		$('span#food').text(newPet.foodLevel);
+		$('span#sleep').text(newPet.sleepLevel);
+		$('span#activity').text(newPet.activityLevel);
+		
+		setInterval(function() {
+			newPet.timePasses();
+			$('span#name').text(newPet.name);
+			$('span#food').text(newPet.foodLevel);
+			$('span#sleep').text(newPet.sleepLevel);
+			$('span#activity').text(newPet.activityLevel);
+		}, 60 * 1000);
+	});
+
+});

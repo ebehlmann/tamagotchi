@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.11.1.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Tamagotchi</title>
+  </head>
+  <body>
+	  <div class="container">
+	  	<h1>Tamagotchi</h1>
+	  	
+	  	<form id="new-pet">
+	  		<div class="form-group">
+          <label for="new-pet-name">Name</label>
+          <input type="text" class="form-control" id="new-pet-name">
+        </div>
+        
+        <div class="form-group">
+          <label for="new-pet-type">Type</label>
+          <input type="text" class="form-control" id="new-pet-type">
+        </div>
+          
+        <button type="submit" class="btn">Create Pet</button>
+	  	</form>
+	  	
+	  	<div class="pet-stats">
+	  		<h3>Here's how <span id="name"></span> is doing:</h3>
+	  		<p>Food level: <span id="food"></span></p>
+	  		<p>Sleep level: <span id="sleep"></span></p>
+	  		<p>Activity level: <span id="activity"></activity></p>
+	  	</div>  
+  	</div>
+  </body>
+</html>
