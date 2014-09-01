@@ -34,4 +34,33 @@ describe('Tamagotchi', function() {
 		});
 		
 	});
+	
+	describe('isAlive', function() {
+		it("should return true if pet has food, sleep and attention", function() {
+			var myPet = Object.create(Tamagotchi);
+			myPet.initialize("my little pet", "turtle");
+			myPet.isAlive().should.equal(true);
+		});
+		
+		it("should return false if food is zero", function() {
+		 var myPet = Object.create(Tamagotchi);
+			myPet.initialize("my little pet", "turtle");
+			myPet.foodLevel = 0;
+			myPet.isAlive().should.equal(false);
+		});
+		
+		it("should return false if sleep is zero", function() {
+		 var myPet = Object.create(Tamagotchi);
+			myPet.initialize("my little pet", "turtle");
+			myPet.sleepLevel = 0;
+			myPet.isAlive().should.equal(false);
+		});
+		
+		it("should return false if activity is zero", function() {
+		 var myPet = Object.create(Tamagotchi);
+			myPet.initialize("my little pet", "turtle");
+			myPet.activityLevel = 0;
+			myPet.isAlive().should.equal(false);
+		});
+	});
 });
