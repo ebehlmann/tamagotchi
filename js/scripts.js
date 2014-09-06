@@ -40,6 +40,7 @@ var createAPet = function(zoo) {
 
 var showAPet = function(pet) {
 	$('div.pet-stats').hide();
+	$('div.after-death').hide();
 	$('button#feed').off();
 	$('button#put-to-bed').off();
 	$('button#play').off();
