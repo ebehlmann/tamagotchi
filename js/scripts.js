@@ -33,15 +33,23 @@ var createAPet = function(zoo) {
 	zoo.petsInZoo.push(newPet);
 	$('ul#zoo-list').append('<li>' + newPet.name + '</li>');
 	$('div#zoo').show();
+	$('ul#zoo-list li').last().click(function() {
+		showAPet(newPet);
+	});
 }
 
 var showAPet = function(pet) {
+	$('div.pet-stats').hide();
+	$('button#feed').off();
+	$('button#put-to-bed').off();
+	$('button#play').off();
+
 	if (pet.isAlive()) {
-		$('div.pet-stats').show();
 		$('span#name').text(pet.name);
 		$('span#food').text(pet.foodLevel);
 		$('span#sleep').text(pet.sleepLevel);
 		$('span#activity').text(pet.activityLevel);
+		$('div.pet-stats').show();
 	} else {
 		$('div.pet-stats').hide();
 		$('h3#status-message').text(pet.name + ' has died.');
@@ -50,17 +58,34 @@ var showAPet = function(pet) {
 	
 	setInterval(function() {
 		pet.timePasses();
-		$('span#name').text(pet.name);
+//		$('span#name').text(pet.name);
+//		$('span#food').text(pet.foodLevel);
+//		$('span#sleep').text(pet.sleepLevel);
+//		$('span#activity').text(pet.activityLevel);
+//		if (pet.isAlive()===false) {
+//			$('div.pet-stats').hide();
+//			$('h3#status-message').text(pet.name + ' has died.');
+//			$('div.after-death').show();
+//		};
+	}, 10 * 1000);
+	
+	$('button#feed').click(function() {
+		pet.foodLevel = pet.foodLevel + 5;
 		$('span#food').text(pet.foodLevel);
+	});
+		
+	$('button#put-to-bed').click(function() {
+		pet.sleepLevel = pet.sleepLevel + 8;
 		$('span#sleep').text(pet.sleepLevel);
+	});
+		
+	$('button#play').click(function() {
+		pet.activityLevel = pet.activityLevel + 4;
 		$('span#activity').text(pet.activityLevel);
-		if (pet.isAlive()===false) {
-			$('div.pet-stats').hide();
-			$('h3#status-message').text(pet.name + ' has died.');
-			$('div.after-death').show();
-		};
-	}, 1 * 1000);
+	});
 }
+
+
 
 $(document).ready(function() {
 	var newZoo = Object.create(Zoo);
@@ -69,20 +94,8 @@ $(document).ready(function() {
 	$('form#new-pet').submit(function(event) {
 		event.preventDefault();		
 		
-		createAPet(newZoo);
-				
-		
-		$('button#feed').click(function() {
-			newPet.foodLevel = newPet.foodLevel + 5;
-		});
-		
-		$('button#put-to-bed').click(function() {
-			newPet.sleepLevel = newPet.sleepLevel + 8;
-		});
-		
-		$('button#play').click(function() {
-			newPet.activityLevel = newPet.activityLevel + 4;
-		});
+		createAPet(newZoo);	
+
 	});
 
 });
