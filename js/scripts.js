@@ -29,16 +29,17 @@ var Zoo = {
 
 var createAPet = function(zoo) {
 	var newPet = Object.create(Tamagotchi);
-	newPet.initialize(($('input#new-pet-name').val()), ($('#input#new-pet-type').val()));
+	newPet.initialize(($('input#new-pet-name').val()), ($('input#new-pet-type').val()));
 	zoo.petsInZoo.push(newPet);
-	$('ul#zoo-list').append('<li>' + newPet.name + '</li>');
+	$('div#zoo-list').append('<button type="button" class="btn btn-default">' + newPet.name + ' the ' + newPet.type + '</button>');
 	$('div#zoo').show();
-	$('ul#zoo-list li').last().click(function() {
+	$('div#zoo-list button').last().click(function() {
 		showAPet(newPet);
 	});
 }
 
 var showAPet = function(pet) {
+	$('div.initial-instructions').hide();
 	$('div.pet-stats').hide();
 	$('div.after-death').hide();
 	$('button#feed').off();
@@ -46,7 +47,7 @@ var showAPet = function(pet) {
 	$('button#play').off();
 
 	if (pet.isAlive()) {
-		$('span#name').text(pet.name);
+		$('span#name').text(pet.name + ' the ' + pet.type);
 		$('span#food').text(pet.foodLevel);
 		$('span#sleep').text(pet.sleepLevel);
 		$('span#activity').text(pet.activityLevel);
@@ -96,6 +97,9 @@ $(document).ready(function() {
 		event.preventDefault();		
 		
 		createAPet(newZoo);	
+		
+		$('input#new-pet-name').val('');
+		$('input#new-pet-type').val('');
 
 	});
 

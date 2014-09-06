@@ -14,6 +14,12 @@
 	  	<div class="row">
 	  	<div class="col-md-8">
 	  	
+	  	<div class="initial-instructions">
+	  		<p>This Tamagotchi app lets you create your own zoo. Fill out the form to the right 
+	  		to create your first pet. Your pets are counting on you, so make sure you feed
+	  		them, play with them and give them time to sleep.</p>
+	  	</div>
+	  	
 	  	<div class="pet-stats">
 	  		<h3>Here's how <span id="name"></span> is doing:</h3>
 	  		<p>Food level: <span id="food"></span></p>
@@ -36,9 +42,10 @@
 	  		<div id="zoo">
 	  			<h3>My Zoo</h3>
 	  			<p>Click on a pet's name to check on it.</p>
-	  			<ul id="zoo-list">
-	  			</ul>
+	  			<div class="btn-group-vertical" id="zoo-list">
+	  			</div>
 	  		</div>
+	  		<h4>Create a new pet</h4>
 	  		<form id="new-pet">
 	  			<div class="form-group">
           	<label for="new-pet-name">Name</label>
