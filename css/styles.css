@@ -5,3 +5,7 @@ div.pet-stats {
 div.after-death {
 	display: none;
 }
+
+div#zoo {
+	display: none;
+}

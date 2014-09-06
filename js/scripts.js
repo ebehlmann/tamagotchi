@@ -20,33 +20,57 @@ var Tamagotchi = {
 	}
 }
 
-$(document).ready(function() {
-	$('form#new-pet').submit(function(event) {
-		event.preventDefault();
-		
-		var newPet = Object.create(Tamagotchi);
-		newPet.initialize(($('input#new-pet-name').val()), ($('#input#new-pet-type').val()));
-		
-		$('form#new-pet').hide();
+var Zoo = {
+	initialize: function(zooName) {
+		this.name = zooName;
+		this.petsInZoo = [];
+	}
+}
+
+var createAPet = function(zoo) {
+	var newPet = Object.create(Tamagotchi);
+	newPet.initialize(($('input#new-pet-name').val()), ($('#input#new-pet-type').val()));
+	zoo.petsInZoo.push(newPet);
+	$('ul#zoo-list').append('<li>' + newPet.name + '</li>');
+	$('div#zoo').show();
+}
+
+var showAPet = function(pet) {
+	if (pet.isAlive()) {
 		$('div.pet-stats').show();
+		$('span#name').text(pet.name);
+		$('span#food').text(pet.foodLevel);
+		$('span#sleep').text(pet.sleepLevel);
+		$('span#activity').text(pet.activityLevel);
+	} else {
+		$('div.pet-stats').hide();
+		$('h3#status-message').text(pet.name + ' has died.');
+		$('div.after-death').show();
+	}
+	
+	setInterval(function() {
+		pet.timePasses();
+		$('span#name').text(pet.name);
+		$('span#food').text(pet.foodLevel);
+		$('span#sleep').text(pet.sleepLevel);
+		$('span#activity').text(pet.activityLevel);
+		if (pet.isAlive()===false) {
+			$('div.pet-stats').hide();
+			$('h3#status-message').text(pet.name + ' has died.');
+			$('div.after-death').show();
+		};
+	}, 1 * 1000);
+}
+
+$(document).ready(function() {
+	var newZoo = Object.create(Zoo);
+	newZoo.initialize("My Zoo");
+
+	$('form#new-pet').submit(function(event) {
+		event.preventDefault();		
 		
-		$('span#name').text(newPet.name);
-		$('span#food').text(newPet.foodLevel);
-		$('span#sleep').text(newPet.sleepLevel);
-		$('span#activity').text(newPet.activityLevel);
-		
-		setInterval(function() {
-			newPet.timePasses();
-			$('span#name').text(newPet.name);
-			$('span#food').text(newPet.foodLevel);
-			$('span#sleep').text(newPet.sleepLevel);
-			$('span#activity').text(newPet.activityLevel);
-			if (newPet.isAlive()===false) {
-				$('div.pet-stats').hide();
-				$('h3#status-message').text(newPet.name + ' has died.');
-				$('div.after-death').show();
-			};
-		}, 1 * 1000);
+		createAPet(newZoo);
+				
 		
 		$('button#feed').click(function() {
 			newPet.foodLevel = newPet.foodLevel + 5;
