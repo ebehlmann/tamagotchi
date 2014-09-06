@@ -1,3 +1,7 @@
 div.pet-stats {
 	display: none;
 }
+
+div.after-death {
+	display: none;
+}

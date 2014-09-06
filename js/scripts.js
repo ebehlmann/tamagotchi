@@ -41,7 +41,24 @@ $(document).ready(function() {
 			$('span#food').text(newPet.foodLevel);
 			$('span#sleep').text(newPet.sleepLevel);
 			$('span#activity').text(newPet.activityLevel);
-		}, 60 * 1000);
+			if (newPet.isAlive()===false) {
+				$('div.pet-stats').hide();
+				$('h3#status-message').text(newPet.name + ' has died.');
+				$('div.after-death').show();
+			};
+		}, 1 * 1000);
+		
+		$('button#feed').click(function() {
+			newPet.foodLevel = newPet.foodLevel + 5;
+		});
+		
+		$('button#put-to-bed').click(function() {
+			newPet.sleepLevel = newPet.sleepLevel + 8;
+		});
+		
+		$('button#play').click(function() {
+			newPet.activityLevel = newPet.activityLevel + 4;
+		});
 	});
 
 });
