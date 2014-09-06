@@ -9,3 +9,45 @@ div.after-death {
 div#zoo {
 	display: none;
 }
+
+.jumbotron {
+	background-color: #ff9897;
+}
+
+img {
+	width: 100%;
+}
+
+h1, h2, h3, h4 {
+	font-family: "Courier New";
+	color: #054d88;
+	font-weight: bold;
+}
+
+.jumbotron h1 {
+	color: #054d88;
+}
+
+#zoo p {
+	font-style: italic;
+}
+
+button.btn {
+	background-color: #ff9897;
+	font-weight: bold;
+	border-color: #054d88;
+}
+
+.btn-default {
+	color: #054d88;
+	border-color: #054d88;
+	font-weight: bold;
+}
+
+button {
+	color: #054d88;
+}
+
+button.btn:hover {
+	background-color: #ffc1d9;
+}

@@ -39,8 +39,7 @@ var createAPet = function(zoo) {													// called whenever a new pet form i
 }
 
 var showAPet = function(pet) {								// function runs when a pet's name is clicked
-	$('div.initial-instructions').hide();				// clears old information from screen
-	$('div.pet-stats').hide();
+	$('div.pet-stats').hide();									// clears old information from screen
 	$('div.after-death').hide();
 	$('button#feed').off();											// clears any click handlers associated with other pets
 	$('button#put-to-bed').off();
